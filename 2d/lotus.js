@@ -1,4 +1,6 @@
-comblock
+/**************
+ ** lotus.js **
+ *************/
 
 var grid;
 var mask;
@@ -12,7 +14,7 @@ function preload() {
 
 function setup() {
     var canvas = createCanvas(700, 700);
-    canvas.parent('test-holder');
+    canvas.parent('lotus-holder');
 
     grid = new Grid(0, 0, width, height, 10, 10);
     mask = createGraphics(width, height);
@@ -58,9 +60,7 @@ function drawMask() {
             let angle = sin(tile.x + tile.y +frameCount/20)/2;
             mask.translate(tile.centerX, tile.centerY);
             mask.rotate(angle);
-
             mask.rect(-tile.width/2,-tile.height/2, tile.width*4/5, tile.height*4/5);
-            // mask.triangle(0,0,tile.width,0,tile.height,tile.width);
             
             mask.pop();
         }
