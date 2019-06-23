@@ -6,7 +6,7 @@ var src;
 var flowers;
 
 function preload() {
-    flowers = loadImage('flowers_small.png');
+    flowers = loadImage('wave_small.jpg');
     flowers.loadPixels();
 }
 
@@ -14,19 +14,24 @@ function setup() {
     var canvas = createCanvas(500, 500);
     canvas.parent('test-holder');
 
-    grid = new Grid(0, 0, width, height, 15, 15);
+    grid = new Grid(0, 0, width, height, 10, 10);
     mask = createGraphics(width, height);
     src = createGraphics(width, height);
+    src.image(flowers, 0, 0);
 
-    background(0,255,255);
+    background(255,255,255);
 }
 
 function draw() {
-    src.image(flowers, 0, 0);
     drawMask(); 
-    // image(mask, 0, 0);
     image(graphicsMask(src, mask), 0, 0);
-    background(0,255,255, 6);
+    background(255,255,255, 14);
+    drawBorder();
+}
+
+function drawBorder() {
+    strokeWeight(20);
+    line(0,0,width,0);
 }
 
 function drawMask() {
@@ -44,7 +49,7 @@ function drawMask() {
             let y1 = height/2;
             let y2 = tile.centerY;
             let distance = dist(x1,y1,x2,y2);
-            let angle = sin(distance+frameCount/20)/2;
+            let angle = sin(i+j+frameCount/20)/2;
             mask.translate(tile.centerX, tile.centerY);
             mask.rotate(angle);
             mask.rect(0,0, tile.width/2, tile.height/2);
