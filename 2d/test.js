@@ -1,4 +1,4 @@
-/* test.js */
+comblock
 
 var grid;
 var mask;
@@ -6,12 +6,12 @@ var src;
 var flowers;
 
 function preload() {
-    flowers = loadImage('wave_small.jpg');
+    flowers = loadImage('owl_small.jpg');
     flowers.loadPixels();
 }
 
 function setup() {
-    var canvas = createCanvas(500, 500);
+    var canvas = createCanvas(700, 700);
     canvas.parent('test-holder');
 
     grid = new Grid(0, 0, width, height, 10, 10);
@@ -25,13 +25,19 @@ function setup() {
 function draw() {
     drawMask(); 
     image(graphicsMask(src, mask), 0, 0);
-    background(255,255,255, 14);
-    drawBorder();
+    background(255,255,255, 20);
 }
 
-function drawBorder() {
-    strokeWeight(20);
-    line(0,0,width,0);
+var running = true;
+function keyPressed() {
+    if(keyCode == 32 && running == true) {
+        running = false;
+        noLoop();
+    } 
+    else if(keyCode == 32 && running == false) {
+        running = true;
+        loop();
+    }
 }
 
 function drawMask() {
@@ -49,11 +55,13 @@ function drawMask() {
             let y1 = height/2;
             let y2 = tile.centerY;
             let distance = dist(x1,y1,x2,y2);
-            let angle = sin(i+j+frameCount/20)/2;
+            let angle = sin(tile.x + tile.y +frameCount/20)/2;
             mask.translate(tile.centerX, tile.centerY);
             mask.rotate(angle);
-            mask.rect(0,0, tile.width/2, tile.height/2);
 
+            mask.rect(-tile.width/2,-tile.height/2, tile.width*4/5, tile.height*4/5);
+            // mask.triangle(0,0,tile.width,0,tile.height,tile.width);
+            
             mask.pop();
         }
     }
