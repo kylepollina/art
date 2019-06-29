@@ -1,0 +1,8 @@
+![](gifs/cubies1.gif)
+![](gifs/cubies2.gif)
+![](gifs/cubies3.gif)
+![](gifs/worm.gif)
+![](gifs/squares.gif)
+![](gifs/hypno.gif)
+![](gifs/lotus.gif)
+![](gifs/waves.gif)
