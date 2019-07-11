@@ -8,7 +8,6 @@ var freq;
 var palette;
 var waves;
 
-
 function setup() {
     var canvas = createCanvas(500, 500);
     canvas.parent('wave-holder');
@@ -22,10 +21,6 @@ function setup() {
     setupWaves();
 
     angleMode(DEGREES);
-
-    gifLength = 1000;
-    gifCanvas = canvas.canvas;
-    capturer.start();
 }
 
 function draw() {
@@ -33,15 +28,6 @@ function draw() {
     for(let i = 0; i < waves.length; i++) {
         let wave = waves[i];
         image(wave.graphics, -1*width/2 + 100*cos(wave.y+frameCount*2), wave.y);
-    }
-
-    if(frameCount < gifLength) {
-        capturer.capture(gifCanvas);
-    }
-    else if(frameCount == gifLength){
-        capturer.stop();
-        capturer.save();
-        noLoop();
     }
 }
 
@@ -66,6 +52,12 @@ function setupWaves() {
     }
 }
 
+function keyPressed() {
+    if(keyCode == 32) {
+        save();
+    }
+}
+
 /* Prevents up and down arrow from moving page up and down */
 window.addEventListener("keydown", function(e) {
     // space and arrow keys
@@ -73,9 +65,3 @@ window.addEventListener("keydown", function(e) {
         e.preventDefault();
     }
 }, false);
-
-function keyPressed() {
-    if(keyCode == 32) {
-        save();
-    }
-}
