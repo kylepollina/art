@@ -1,16 +1,17 @@
-/* test.js */
+/* patterns.js */
 
 var palette;
 
 function setup() {
-    var canvas = createCanvas(500, 500);
+    var canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('patterns-holder');
 
-    palette = randomPalette1000();
+    // palette = randomPalette1000();
+    palette = getPalette1000(534);
 
     strokeWeight(3);
-    stroke(randColor(palette));
-    fill(randColor(palette));
+    stroke(palette[0]);
+    fill(palette[2]);
 }
 
 function keyPressed() {
@@ -28,17 +29,29 @@ function keyPressed() {
 function draw() {
     background(255);
 
-    for(let i = 0; i < 10; i++) {
-        for(let j = 0; j < 10; j++) {
-            let squareLen = (width-1)/10;
-            let x = i*squareLen;
-            let y = j*squareLen;
+    let squareLen = 200;
 
-            for(let k = 0; k < 6; k++) {
-                rect(x + 10*k + k*cos(frameCount*i/60), y + 10*k + k*sin(frameCount*j/60), squareLen-8*k, squareLen-8*k);
-            }
+    for(let x = 0; x < width; x += squareLen) {
+        for(let y = 0; y < height; y += squareLen) {
+            drawSquare(x, y, squareLen, 0);
         }
-    } 
+    }
+}
+
+
+function drawSquare(x, y, len, recursionLevel) {
+    let xpos = x + sin(frameCount/30) * recursionLevel * dist(x, y, mouseX, mouseY)/100;
+    let ypos = y + cos(frameCount/60) * recursionLevel * dist(x, y, mouseY, mouseY)/100;
+    let l = len + sin(frameCount/50) * recursionLevel;
+    let w = len + cos(frameCount/20) * recursionLevel;
+    rect(xpos, ypos, l, w);
+    if(len > 20) {
+        drawSquare(x+10, y+10, len-20, recursionLevel+1);
+    }
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
 }
 
 /* Prevents up and down arrow from moving page up and down */
