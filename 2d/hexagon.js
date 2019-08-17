@@ -79,9 +79,6 @@ function randomizeColors() {
     redraw();
 }
 
-
-
-
 function draw_hexagon() {
     draw_triangle();
     t.setHeading(t.heading + 60);

@@ -3,6 +3,11 @@
 var checker;
 var rad;
 var h;
+var image;
+
+function preload() {
+    image = loadImage("starfish.jpg");
+}
 
 function setup() {
     var canvas = createCanvas(500, 500, WEBGL);
@@ -11,7 +16,7 @@ function setup() {
     rad = 80;
     h = 90;
 
-    checker = createGraphics(2*rad*PI, h);
+    checker = createGraphics(2*rad*PI - 200, h);
     let boxlen = 20;
     for(let i = 0; i < checker.width; i+=boxlen) {
         for(let j = 0; j < checker.height; j+=boxlen) {
@@ -21,18 +26,19 @@ function setup() {
         }
     }
 
-    // angleMode(DEGREES);
+    angleMode(DEGREES);
     // noLoop();
 }
 
 function draw() {
     background(255);
     translate(0, 0, 200);
-    rotateX(radians(mouseY));
-    rotateY(radians(mouseX));
-    texture(checker);
-    // cylinder(rad, h, 34, 1, 0, 0);
-    plane(100, 100);
+    rotateX(mouseY);
+    rotateY(mouseX);
+    texture(image);
+    stroke(0);
+    cylinder(rad, h);
+    // plane(100, 100);
 }
 
 /* Prevents up and down arrow from moving page up and down */
