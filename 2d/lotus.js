@@ -7,74 +7,29 @@ var lotus;
 var mask;
 var src;
 
-var capturer = new CCapture( {
-        framerate: 60,
-        format: 'png',
-        verbose: false,
-        workersPath: '../p5-utilities/'
-    });
-var gifCanvas;
-var recording = false;
-var startCondition;
-
 function preload() {
     lotus = loadImage('owl_small.jpg');
-    lotus.loadPixels();
+    // lotus.loadPixels();
 }
 
 function setup() {
     var canvas = createCanvas(300, 300);
     canvas.parent('lotus-holder');
-    gifCanvas = canvas.canvas;
 
-    grid = new Grid(0, 0, width, height, 10, 10);
-    mask = createGraphics(width, height);
-    src = createGraphics(width, height);
-    src.image(lotus, 0, 0);
+    // grid = new Grid(0, 0, width, height, 10, 10);
+    // mask = createGraphics(width, height);
+    // src = createGraphics(width, height);
+    // src.image(lotus, 0, 0);
 
-    background(255,255,255);
+    background(200);
 }
 
 function draw() {
-    drawMask(); 
-    image(graphicsMask(src, mask), 0, 0);
-    background(255,255,255, 20);
-
-    if(recording) {
-        if(sin(radians(frameCount)) == startCondition){
-            capturer.stop();
-            capturer.save();
-            noLoop();
-        }
-        else if(frameCount%2 == 0) {
-            capturer.capture(gifCanvas);
-        }
-        else {
-            redraw();
-        }
-    }
-    else {
-        if(frameCount == 100) {
-            startCondition = sin(radians(frameCount));
-            capturer.start();
-            recording = true;
-            capturer.capture(gifCanvas);
-        }
-    }
+    // drawMask(); 
+    // image(graphicsMask(src, mask), 0, 0);
+    // background(255,255,255, 20);
 }
 
-
-var running = true;
-function keyPressed() {
-    if(keyCode == 32 && running == true) {
-        running = false;
-        noLoop();
-    } 
-    else if(keyCode == 32 && running == false) {
-        running = true;
-        loop();
-    }
-}
 
 function drawMask() {
     mask.clear();
