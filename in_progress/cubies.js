@@ -1,4 +1,4 @@
-/* test.js */
+/* cubies.js */
 
 var gridGraphics;
 var boxlen = 20;
@@ -6,10 +6,11 @@ var palette;
 
 function setup() {
     var canvas = createCanvas(500, 500, WEBGL);
-    canvas.parent('cubes-holder');
+    canvas.parent('cubies-holder');
 
     palette = randomPalette1000();
     gridGraphics = createGraphics(100, 100);
+    noStroke();
 
     ortho();
 }

@@ -17,14 +17,10 @@ function setup() {
     var canvas = createCanvas(500, 500, WEBGL);
     canvas.parent('faces-holder');
 
-    // palette = randomPalette1000();
-    palette = getPalette1000(749);
-    gradient = createGraphics(width, height);
+    palette = randomPalette1000();
+    // palette = getPalette1000(749);
     col1 = randColor(palette);
     col2 = randColor(palette);
-    // stripeGradient = new StripeGradient(0, 0, width, height, col1, col2, 10);
-    // gradient.image(stripeGradient.generate(), 0, 0);
-    setGradient(0, 0, width, height, col1, col2, Y_AXIS);
     cubeColor = randColor(palette);
 
     setupFaces();
@@ -58,7 +54,6 @@ function setupFaces() {
 function draw() {
     clear();
 
-    drawGradient();
     translate(0, 0, 200);
     drawFaces();
 }
@@ -197,37 +192,10 @@ function drawCube() {
     pop();
 }
 
-function drawGradient() {
-    push();
-    texture(gradient);
-    translate(-1/2*width, -1/2*height, 100);
-    rect(0, 0, width, height);
-    pop();
+
+function randColor(palette) {
+    return palette[~~random(palette.length)];
 }
-
-var gradient;
-function setGradient(x, y, w, h, c1, c2, axis) {
-  gradient.noFill();
-
-  if (axis === Y_AXIS) {
-    // Top to bottom gradient
-    for (let i = y; i <= y + h; i++) {
-      let inter = map(i, y, y + h, 0, 1);
-      let c = lerpColor(c1, c2, inter);
-      gradient.stroke(c);
-      gradient.line(x, i, x + w, i);
-    }
-  } else if (axis === X_AXIS) {
-    // Left to right gradient
-    for (let i = x; i <= x + w; i++) {
-      let inter = map(i, x, x + w, 0, 1);
-      let c = lerpColor(c1, c2, inter);
-      gradient.stroke(c);
-      gradient.line(i, y, i, y + h);
-    }
-  }
-}
-
 
 /* Prevents up and down arrow from moving page up and down */
 window.addEventListener("keydown", function(e) {

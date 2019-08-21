@@ -30,14 +30,14 @@ function draw() {
 
 
 
-        // if(bw == false && frameCount - frameChanged > i*2) {
-        //     var color = palette[i%5];
-        // }
-        // else 
-        //     var color = i % 2 == 0 ? 0 : 255;
-        // fill(color);
+        if(bw == false && frameCount - frameChanged > i*2) {
+            var color = palette[i%5];
+        }
+        else 
+            var color = i % 2 == 0 ? 0 : 255;
+        fill(color);
 
-        // if(i == numSquares) background(palette[i%5]);
+        if(i == numSquares) background(palette[i%5]);
 
         push();
         let sign = i % 2 == 0 ? 1 : -1;
