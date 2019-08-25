@@ -1,4 +1,7 @@
 
+/************
+ ** gif.js **
+ ***********/
 
 var gifLength;
 var gifCanvas;
@@ -11,7 +14,7 @@ var start;
 
 function setup() {
     var canvas = createCanvas(700, 700);
-    canvas.parent('test-holder');
+    canvas.parent('gif-holder');
     gifCanvas = canvas.canvas;
 
     start = (height - 400) / 2 + 10;
@@ -51,6 +54,7 @@ function draw() {
         capturer.stop();
         capturer.save();
     }
+
 }
 
 function drawLine() {

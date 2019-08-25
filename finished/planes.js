@@ -2,6 +2,8 @@
 
 var palette;
 var recording;
+var numloops;
+var allowedToStop = false;
 
 function setup() {
     var canvas = createCanvas(500, 500, WEBGL);
@@ -13,18 +15,47 @@ function setup() {
 
     noStroke();
     ortho();
+
+    recording = false;
+    numloops = 0;
+    gifCanvas = canvas.canvas;
 }
 
 function draw() {
-    // camera(0, 0, -width/2 + sin(frameCount/50)*250, 0, 0, 0, 0, 1, 0);
-    camera(0, 0, -width/2 , 0, 0, 0, 0, 1, 0);
+
+    camera(0, 0, -width/2 + sin(frameCount/50)*250, 0, 0, 0, 0, 1, 0);
+    background(palette[3]);
+
+    // camera(0, 0, -width/2 , 0, 0, 0, 0, 1, 0);
+    // background(250, 250, 255);
+
     rotateX(radians(45));
     rotateY(radians(45));
-    background(250, 250, 255);
 
     drawThing();
+
+    let stopcase = Math.round(sin(frameCount/50) * 100) / 100;
+    if(recording == false && stopcase == 1) {
+        recording = true;
+        capturer.start();
+    }
+    if(recording) {
+        capturer.capture(gifCanvas);
+    }
+    if(recording && stopcase == 1 && frameCount > 10 && allowedToStop) {
+        console.log(numloops);
+        capturer.stop();
+        capturer.save();
+        noLoop();
+    }
+
 }
 
+function keyPressed() {
+    if(keyCode == 32) {
+        allowedToStop = true;
+    }
+}
 
 function drawThing() {
     translate(-width, 0, -height);
