@@ -95,6 +95,7 @@ function drawText() {
         Nike.draw(ctx);
         just.draw(ctx);
     });
+
 }
 
 function keyPressed() {
