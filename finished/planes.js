@@ -4,6 +4,7 @@ var palette;
 var recording;
 var numloops;
 var allowedToStop = false;
+var allowedToStart = false;
 
 function setup() {
     var canvas = createCanvas(500, 500, WEBGL);
@@ -22,6 +23,10 @@ function setup() {
 }
 
 function draw() {
+    if(frameCount/100 > radians(90)) {
+        noLoop();
+        save();
+    }
 
     camera(0, 0, -width/2 + sin(frameCount/50)*250, 0, 0, 0, 0, 1, 0);
     background(palette[3]);
@@ -33,9 +38,12 @@ function draw() {
     rotateY(radians(45));
 
     drawThing();
+    recorder();
+}
 
+function recorder() {
     let stopcase = Math.round(sin(frameCount/50) * 100) / 100;
-    if(recording == false && stopcase == 1) {
+    if(recording == false && stopcase == 1 && allowedToStart == true) {
         recording = true;
         capturer.start();
     }
@@ -48,12 +56,14 @@ function draw() {
         capturer.save();
         noLoop();
     }
-
 }
 
 function keyPressed() {
     if(keyCode == 32) {
         allowedToStop = true;
+    }
+    if(keyCode == 48) {
+        allowedToStart = true;
     }
 }
 
@@ -80,8 +90,8 @@ function drawThing() {
             push();
             rotateY(frameCount/100);
             // fill(palette[(1 + i+j + ~~(frameCount/10))%5]);
-            fill(palette[(1 + i+j)%5]);
-            plane(100, 100);
+            fill(palette[(1 + i*j)%5]);
+            plane(101, 101);
             pop();
 
             pop();
