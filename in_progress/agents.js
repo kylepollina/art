@@ -30,8 +30,8 @@ function draw() {
     image(gradient, 0, 0);
     
     // drawPoints();
-    drawDiagram();
     updatePoints();
+    // drawDiagram();
 }
 
 function drawPoints() {
@@ -39,11 +39,9 @@ function drawPoints() {
         let point = points[i];
         ellipse(point[0], point[1], 10);
     }
-
 }
 
 function drawDiagram() {
-    
     let delaunay = Delaunay.from(points);
 
     for(var polygon of delaunay.trianglePolygons()) {
@@ -74,6 +72,7 @@ function drawDiagram() {
             vertex(polygon[i][0],polygon[i][1]); 
         }
         endShape();
+
     }
 }
 
