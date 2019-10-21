@@ -1,0 +1,43 @@
+<!-- spirohex.html -->
+
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Teko" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="../p5/p5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../p5/addons/p5.dom.js"></script>
+
+    <script src="../p5-utilities/CCapture.all.min.js"></script>
+    <script src="../p5-utilities/gif.worker.js"></script>
+
+    <script>
+        var capturer = new CCapture( {
+            framerate: 60,
+            format: 'png',
+            name: 'spirohex',
+            workersPath: './js',
+            verbose: true
+        } );
+    </script>
+
+    <script src="../p5-utilities/grid.js"></script>
+    <script src="../p5-utilities/palettes.js"></script>
+    <script src="../p5-utilities/image.js"></script>
+    <script src="../p5-utilities/turtle.js"></script>
+    <script src="../p5-utilities/shapes.js"></script>
+
+    <script src="spirohex.js"></script>
+
+</head>
+<body style="margin:0px">
+
+    <div id="sketch">
+        <div id="spirohex-holder"></div>
+    </div>
+
+</body>
+</html>
