@@ -3,26 +3,30 @@
 var gridGraphics;
 var boxlen = 20;
 var palette;
+var playing = true;
 
 function setup() {
     var canvas = createCanvas(500, 500, WEBGL);
     canvas.parent('cubies-holder');
 
     palette = randomPalette1000();
+    // palette = getPalette1000(98);
+    // palette = getPalette1000(46);
+    // palette = getPalette1000(782);
     gridGraphics = createGraphics(100, 100);
     noStroke();
 
     ortho();
+    noLoop();
 }
 
 function draw() {
-
     for(let x = 0; x < gridGraphics.width; x+=boxlen) {
         for(let y = 0; y < gridGraphics.height; y+=boxlen) {
-            let a = x/boxlen;
-            let b = y/boxlen;
-            let colnum = abs(floor(sin(2*a+b-frameCount/8)/10+cos(b+a)))%5;
-            gridGraphics.fill(palette[colnum]);
+
+            let n = generateN1(x, y);
+
+            gridGraphics.fill(palette[n%5]);
             gridGraphics.noStroke();
             gridGraphics.rect(x, y, boxlen, boxlen);
         }
@@ -30,14 +34,14 @@ function draw() {
 
 
     fill(255);
-    stroke(0);
+    noStroke();
     texture(gridGraphics);
     rotateX(radians(45));
     rotateY(radians(45));
 
     translate(-2*width/3, 0, -200);
 
-    for(let i = 0; i < 10; i++) {
+    for(let i = 0; i < 5; i++) {
         for(let j = 0; j < 10; j++) {
             box(100);
             translate(100, 0, 100);
@@ -49,9 +53,28 @@ function draw() {
     }
 }
 
+
+function generateN1(x, y) {
+    let xindex = x / boxlen;
+    let yindex = y / boxlen;
+    let n = (yindex * sin(frameCount/80) + xindex + frameCount/4);
+    n = Math.floor(Math.abs(n));
+    return n;
+}
+
 function keyPressed() {
     if(keyCode == 32) {
         palette = randomPalette1000();
+    }
+    if(keyCode == 48) {
+        if(playing == true) {
+            playing = false;
+            noLoop();
+        }
+        else {
+            playing = true;
+            loop();
+        }
     }
 }
 
