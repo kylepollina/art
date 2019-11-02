@@ -1,7 +1,6 @@
 /* planes.js */
 
 var palette;
-var recording;
 var numloops;
 var allowedToStop = false;
 var allowedToStart = false;
@@ -12,50 +11,48 @@ function setup() {
 
     // palette = randomPalette1000();
     palette = getPalette1000(921);
-    recording = false;
 
     noStroke();
     ortho();
 
-    recording = false;
     numloops = 0;
-    gifCanvas = canvas.canvas;
 }
 
 function draw() {
-    if(frameCount/100 > radians(90)) {
-        noLoop();
-        save();
-    }
+    background(palette[3]);
 
     camera(0, 0, -width/2 + sin(frameCount/50)*250, 0, 0, 0, 0, 1, 0);
-    background(palette[3]);
+    rotateX(radians(45));
+    rotateY(radians(45));
+    drawThing();
 
     // camera(0, 0, -width/2 , 0, 0, 0, 0, 1, 0);
     // background(250, 250, 255);
 
-    rotateX(radians(45));
-    rotateY(radians(45));
 
-    drawThing();
-    recorder();
-}
 
-function recorder() {
-    let stopcase = Math.round(sin(frameCount/50) * 100) / 100;
-    if(recording == false && stopcase == 1 && allowedToStart == true) {
-        recording = true;
-        capturer.start();
-    }
-    if(recording) {
-        capturer.capture(gifCanvas);
-    }
-    if(recording && stopcase == 1 && frameCount > 10 && allowedToStop) {
-        console.log(numloops);
-        capturer.stop();
-        capturer.save();
-        noLoop();
-    }
+    // camera(-width/2 + sin(frameCount/50)*250, 0, 0, 0, 0, 0, 0, 1, 0);
+    // translate(0, 0, width*3/5);
+    // push();
+    // drawThing();
+    // pop();
+    // translate(100, 100, 0);
+    // push();
+    // drawThing();
+    // pop();
+    // translate(100, 100, 0);
+    // push();
+    // drawThing();
+    // pop();
+    // translate(100, -300, 0);
+    // push();
+    // drawThing();
+    // pop();
+    // translate(100, -100, 0);
+    // push();
+    // drawThing();
+    // pop();
+
 }
 
 function keyPressed() {
@@ -81,7 +78,7 @@ function drawThing() {
             rotateY(frameCount/100);
 
             // fill(palette[(i+j + ~~(frameCount/10))%5]);
-            fill(palette[(i*j)%5]);
+            fill(palette[(i+j)%5]);
             plane(100, 100);
             pop();
 
@@ -90,7 +87,7 @@ function drawThing() {
             push();
             rotateY(frameCount/100);
             // fill(palette[(1 + i+j + ~~(frameCount/10))%5]);
-            fill(palette[(1 + i*j)%5]);
+            fill(palette[(1 + i+j)%5]);
             plane(101, 101);
             pop();
 
@@ -101,6 +98,11 @@ function drawThing() {
     }
 }
 
+function keyPressed() {
+    if(keyCode == 32) {
+        palette = randomPalette1000();
+    }
+}
 
 /* Prevents up and down arrow from moving page up and down */
 window.addEventListener("keydown", function(e) {
