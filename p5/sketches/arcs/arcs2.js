@@ -13,8 +13,9 @@ function setup() {
 }
 
 function draw() {
-
-	background(120, 120, 0);
+    colorMode(RGB);
+    background(255, 250, 250);
+    colorMode(HSB);
 	num = round(map(mouseX, 0, width, 4, 25));
 	if (num % 2 === 1) {
 		num += 1;
@@ -31,7 +32,7 @@ function draw() {
 	ctx.rect(-width / 2, -height / 2, width / 2, height);
 	ctx.clip();
 	for (let i = 0; i < num; i++) {
-		fill(i/num * 360, 90, 80);
+		fill(i/num * 360, 90, 90);
 		rotate(angle);
 		circle(r, 0, 2*r, 2*r, -angle, PI);
 	}
@@ -44,7 +45,7 @@ function draw() {
 	
 	rotate(PI);
 	for (let i = 0; i < num; i++) {
-		fill((i/num * 360 + 180) % 360, 90, 80);
+		fill((i/num * 360 + 180) % 360, 90, 90);
 		rotate(angle);
 		circle(r, 0, 2*r, 2*r);
 	}
