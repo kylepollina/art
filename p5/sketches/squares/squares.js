@@ -4,13 +4,16 @@ var palette;
 var numSquares;
 var squareColors = [];
 
+var isBW = true;
+var frameChanged = 0;
+
 function setup() {
-    var canvas = createCanvas(windowWidth, windowHeight);
+    var canvas = createCanvas(600, 600);
     canvas.parent('squares-holder');
 
     numSquares = 30;
     setupSquareColors();
-    palette = randomPalette1000();
+    palette = randomPalette();
 
     noStroke();
     rectMode(CENTER);
@@ -28,9 +31,7 @@ function draw() {
     for(let i = numSquares; i > 1; i--) {
         let sidelen = width/40*i;
 
-
-
-        if(bw == false && frameCount - frameChanged > i*2) {
+        if(isBW == false && frameCount - frameChanged > i*2) {
             var color = palette[i%5];
         }
         else 
@@ -47,34 +48,21 @@ function draw() {
     } 
 }
 
-var bw = true;
-var frameChanged = 0;
 
 function mouseClicked() {
-    if(bw == true) {
-        bw = false;
+    if(isBW == true) {
+        isBW = false;
         frameChanged = frameCount;
         palette = randomPalette1000();
     }
     else {
-        bw = true;
+        isBW = true;
     }
-}
-
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
 }
 
 function keyPressed() {
     if(keyCode == 32) {
-        palette = randomPalette1000();
+        palette = randomPalette();
     }
 }
 
-/* Prevents up and down arrow from moving page up and down */
-window.addEventListener("keydown", function(e) {
-    // space and arrow keys
-    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
-    }
-}, false);

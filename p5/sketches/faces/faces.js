@@ -17,8 +17,8 @@ function setup() {
     var canvas = createCanvas(500, 500, WEBGL);
     canvas.parent('faces-holder');
 
-    palette = randomPalette1000();
-    // palette = getPalette1000(749);
+    palette = randomPalette();
+    // palette = getPalette(749);
     col1 = randColor(palette);
     col2 = randColor(palette);
     cubeColor = randColor(palette);

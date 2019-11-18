@@ -5,41 +5,26 @@ var phyllotaxis;
 var points;
 
 function setup() {
-    var canvas = createCanvas(windowWidth, windowHeight);
+    var canvas = createCanvas(500, 500);
     canvas.parent('brush-holder');
 
-    palette = randomPalette1000();
+    palette = randomPalette();
     phyllotaxis = new Phyllotaxis(1000);
     points = phyllotaxis.generatePoints();
-    console.log(points);
 
     noStroke();
 }
 
 function draw() {
-    for(let p in points) {
-        let x = width/2 + p.x;
-        let y = height/2 + p.y;
+    for(let i = 0; i < points.length; i++) {
+        let p = points[i];
 
-        fill(palette[int(random(5))]);
-        ellipse(x, y, 100);
-        for(let i = 0; i < 10; i++) {
-            fill(palette[int(random(5))]);
-            ellipse(x+random(-100, 100), y+random(-100, 100), 100-i*10);
-        }
+        let x = p.x;
+        let y = p.y;
+
+        fill(palette[i % 5]);
+        ellipse(x, y, i / (mouseX / 10 + 1));
     }
 }
 
 
-
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-}
-
-/* Prevents up and down arrow from moving page up and down */
-window.addEventListener("keydown", function(e) {
-    // space and arrow keys
-    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
-    }
-}, false);
