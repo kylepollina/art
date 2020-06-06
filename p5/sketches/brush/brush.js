@@ -10,12 +10,12 @@ function setup() {
 
     palette = randomPalette();
     phyllotaxis = new Phyllotaxis(1000);
-    points = phyllotaxis.generatePoints();
 
     noStroke();
 }
 
 function draw() {
+    points = phyllotaxis.generatePoints();
     for(let i = 0; i < points.length; i++) {
         let p = points[i];
 
@@ -25,6 +25,7 @@ function draw() {
         fill(palette[i % 5]);
         ellipse(x, y, i / (mouseX / 10 + 1));
     }
+    phyllotaxis.numPoints = 1000 - (width - mouseX)
 }
 
 
