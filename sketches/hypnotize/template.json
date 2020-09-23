@@ -1,0 +1,8 @@
+{
+    "file_name": "hypnotize.html",
+    "sketch_name": "hypnotize",
+    "title": "sleepy",
+    "current_page": "art",
+    "requires_p5": "true",
+    "utility_scripts": ["shapes.js"]
+}

@@ -1,0 +1,8 @@
+{
+    "file_name": "corners.html",
+    "sketch_name": "corners",
+    "title": "right angles",
+    "current_page": "art",
+    "requires_p5": "true",
+    "utility_scripts": ["palettes.js", "grid.js"]
+}
