@@ -13,8 +13,10 @@ function preload() {
 function setup() {
     var canvas = createCanvas(500,500);
     canvas.parent("lisa-holder");
-    noStroke();
+
     img.loadPixels();
+
+    noStroke();
     noLoop();
 }
 
@@ -32,6 +34,7 @@ function draw() {
     recursive_split(t1, num_splits);
     recursive_split(t2, num_splits);
 
+    /* prevent the sketch from updating while we are still processing the triangles */
     is_updating = true;
     for(let i = 0; i < triangles.length; i++) {
         var t = triangles[i];
@@ -40,37 +43,15 @@ function draw() {
     is_updating = false;
 }
 
-function keyPressed() {
-    if(keyCode == UP_ARROW && num_splits < max_splits && is_updating == false) {
-        num_splits++;
-        triangles = [];
-        redraw();
+function mouseMoved() {
+    /* prevent the sketch from updating while we are still processing the triangles */
+    if (is_updating == false) {
+        if (mouseX < img.width) {
+            num_splits = floor((mouseX / img.width) * max_splits)
+        } else { num_splits = max_splits }
+        triangles = []
+        redraw()
     }
-    else if(keyCode == DOWN_ARROW && num_splits > 1 && is_updating == false) {
-        num_splits--;
-        triangles = [];
-        redraw();
-    }
-}
-
-var going_up = true;
-
-function mousePressed() {
-    if(going_up == true && num_splits < max_splits) {
-        num_splits++;
-    }
-    if(going_up == true && num_splits == max_splits) {
-        going_up = false;
-        num_splits--;
-    }
-    if(going_up == false && num_splits > 0) {
-        num_splits--;
-    }
-    if(going_up == false && num_splits == 0) {
-        going_up = true;
-        num_splits++;
-    }
-    redraw();
 }
 
 /*  Recursively split each triangle into 2, n amount of times */
@@ -140,7 +121,6 @@ function recursive_split(triangle, n) {
             split2.set_avg_color(img);
             triangles.push(split1);
             triangles.push(split2);
-
         }
 
         recursive_split(split1, n);
