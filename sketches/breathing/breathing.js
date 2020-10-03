@@ -70,26 +70,27 @@ function draw() {
 }
 
 
+function keyPressed() { if(keyCode == 32){ rotateImages() } }
+function mouseClicked() { rotateImages() }
+
 var nfile = 1;
 // Rotate through images
-function keyPressed() {
-    if(keyCode == 32) {
-        let pictures = [
-            "p1.png", 
-            "p2.png",
-            "p3.png",
-            "p4.png",
-            "p5.png",
-            "p6.png",
-            "p7.png",
-            "p8.png",
-            "p9.png"
-        ]
-        file = pictures[nfile];
-        nfile++;
-        if(nfile == pictures.length) nfile = 0;
-        input = loadImage(file);
-    }
+function rotateImages() {
+    let pictures = [
+        "p1.png", 
+        "p2.png",
+        "p3.png",
+        "p4.png",
+        "p5.png",
+        "p6.png",
+        "p7.png",
+        "p8.png",
+        "p9.png"
+    ]
+    file = pictures[nfile];
+    nfile++;
+    if(nfile == pictures.length) nfile = 0;
+    input = loadImage(file);
 }
 
 /* Prevents space from doing default action */
