@@ -1,6 +1,7 @@
 {
     "file_name": "triangles.html",
     "sketch_name": "triangles",
+    "is_sketch": true,
     "title": "quantum walk",
     "current_page": "art",
     "requires_p5": "true",
