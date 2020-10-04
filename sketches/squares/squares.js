@@ -29,14 +29,15 @@ function draw() {
         if(i % 2 == 0) fill(0);
         else fill(255);
 
-        // let modifier = mouseX / 1000;
-        let modifier;
-        if (mouseX < width/2) { modifier = mouseX / 1000 }
-        else { modifier = width/2 / 1000 }
+        let modifier = 1 + mouseX / 1000;
+        // let modifier;
+        // if (mouseX < width/2) { modifier = mouseX / 1000 }
+        // else { modifier = width/2 / 1000 }
 
         push();
         let sign = i % 2 == 0 ? 1 : -1;
-        rotate(sign * sin(frameCount/100)*i * modifier);
+        rotate(sign * sin(frameCount/1000)*i * modifier);
+        // rotate(sign * sin(frameCount/100)*i * modifier);
         rect(0, 0, sidelen, sidelen);
         pop();
     } 
