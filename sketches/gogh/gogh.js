@@ -15,6 +15,7 @@ function preload() {
 function mouseClicked() {
     imgNum++;
     if (imgNum > 2) { imgNum = 0 }
+    redraw()
 }
 
 function setup() {
