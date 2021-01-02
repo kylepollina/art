@@ -5,5 +5,5 @@
     "title": "quiet",
     "current_page": "art",
     "requires_p5": "true",
-    "utility_scripts": ["phyllotaxis.js", "graphics.js", "shapes.js"]
+    "p5_utility_scripts": ["phyllotaxis.js", "graphics.js", "shapes.js"]
 }

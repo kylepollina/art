@@ -1,8 +1,9 @@
 {
     "file_name": "holohex.html",
     "sketch_name": "holohex",
+    "is_sketch": true,
     "title": "everything small is a small version of something big",
     "current_page": "art",
     "requires_p5": "true",
-    "utility_scripts": ["palettes.js", "turtle.js", "shapes.js"]
+    "p5_utility_scripts": ["palettes.js", "turtle.js", "shapes.js"]
 }

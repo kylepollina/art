@@ -8,7 +8,7 @@ var mask;
 var src;
 
 function preload() {
-    lotus = loadImage('images/lotus.jpg');
+    lotus = loadImage('lotus_big.jpg');
     lotus.loadPixels();
 }
 

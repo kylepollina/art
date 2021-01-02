@@ -53,7 +53,7 @@ class StripeBox {
     show() {
         let stripes = this.createStripes();
         let mask = this.createMask();
-        let stripebox = graphicMask(stripes, mask);
+        let stripebox = graphicsMask(stripes, mask);
         image(stripebox, this.x, this.y);
     }
 

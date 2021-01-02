@@ -1,8 +1,8 @@
 {
-    "file_name": "diamond.html",
-    "sketch_name": "diamond",
+    "file_name": "planes.html",
+    "sketch_name": "planes",
     "is_sketch": true,
-    "title": "girls best friend",
+    "title": "",
     "current_page": "art",
     "requires_p5": "true",
     "p5_utility_scripts": ["palettes.js"]

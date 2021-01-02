@@ -20,7 +20,7 @@ function setup() {
     var canvas = createCanvas(700, 700);
     canvas.parent('stripes-holder');
 
-    palette = randomPalette1000();
+    palette = randomPalette100();
     
     col1 = palette[0];
     col2 = palette[1];

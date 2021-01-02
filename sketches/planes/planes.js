@@ -10,7 +10,7 @@ function setup() {
     canvas.parent('planes-holder');
 
     // palette = randomPalette1000();
-    palette = getPalette1000(921);
+    palette = allPalettes[921];
 
     noStroke();
     ortho();

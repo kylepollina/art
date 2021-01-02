@@ -3,11 +3,11 @@
 var palette;
 
 function setup() {
-    var canvas = createCanvas(windowWidth, windowHeight);
+    var canvas = createCanvas(500, 500);
     canvas.parent('patterns-holder');
 
     // palette = randomPalette1000();
-    palette = getPalette1000(534);
+    palette = allPalettes[534];
 
     strokeWeight(3);
     stroke(palette[0]);
@@ -29,7 +29,7 @@ function keyPressed() {
 function draw() {
     background(255);
 
-    let squareLen = 200;
+    let squareLen = width/5;
 
     for(let x = 0; x < width; x += squareLen) {
         for(let y = 0; y < height; y += squareLen) {

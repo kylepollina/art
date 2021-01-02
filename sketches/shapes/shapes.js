@@ -10,7 +10,7 @@ function setup() {
 
     shape = null;
 
-    palette = randomPalette1000();
+    palette = randomPalette100();
 }
 
 function draw() {

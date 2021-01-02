@@ -4,5 +4,5 @@
     "title": "sleepy",
     "current_page": "art",
     "requires_p5": "true",
-    "utility_scripts": ["shapes.js"]
+    "p5_utility_scripts": ["shapes.js"]
 }
