@@ -15,6 +15,10 @@
   <script src="../../scripts/p5-utilities/phyllotaxis.js"></script>
   <script src="../../scripts/p5-utilities/shapes.js"></script>
   
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   
 </head>
 
@@ -48,6 +52,60 @@
   <div id="brush-holder">
   </div>
 </div>
+
+<br>
+
+<details>
+  <summary>Source code</summary>
+
+  <pre><code class="javascript">/* brush.js */
+
+var palette;
+var phyllotaxis;
+var points;
+
+function setup() {
+    var canvas = createCanvas(500, 500);
+    canvas.parent('brush-holder');
+
+    palette = randomPalette();
+    phyllotaxis = new Phyllotaxis(1000);
+
+    noStroke();
+}
+
+function draw() {
+    points = phyllotaxis.generatePoints();
+    for(let i = 0; i < points.length; i++) {
+        let p = points[i];
+
+        let x = p.x;
+        let y = p.y;
+
+        fill(palette[i % 5]);
+        ellipse(x, y, i / (mouseX / 10 + 1));
+    }
+    phyllotaxis.numPoints = 1000 - (width - mouseX)
+}
+
+
+</code></pre>
+
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/palettes.js">p5-utilities/palettes.js</a>
+    </ul>
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/phyllotaxis.js">p5-utilities/phyllotaxis.js</a>
+    </ul>
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/shapes.js">p5-utilities/shapes.js</a>
+    </ul>
+  
+
+</details>
 
 
       </div>

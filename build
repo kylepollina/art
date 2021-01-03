@@ -1,88 +1,20 @@
 #!/usr/bin/env bash
 
-# thrill
-jinja -d sketches/thrill/template.json ../kylepollina.github.io/templates/sketch.html > sketches/thrill/thrill.html
+if [ $# -eq 0 ]; then
+  echo 'Building all sketches'
+  echo '---------------------'
 
-# breathing
-jinja -d sketches/breathing/template.json ../kylepollina.github.io/templates/sketch.html > sketches/breathing/breathing.html
+  for sketch in $(ls sketches)
+  do
+    if [ -e sketches/$sketch/template.json ]; then
+      echo "Building $sketch..."
 
-# lisa
-jinja -d sketches/lisa/template.json ../kylepollina.github.io/templates/sketch.html > sketches/lisa/lisa.html
-
-# arcs
-jinja -d sketches/arcs/template.json ../kylepollina.github.io/templates/sketch.html > sketches/arcs/arcs.html
-
-# cubies
-jinja -d sketches/cubies/template.json ../kylepollina.github.io/templates/sketch.html > sketches/cubies/cubies.html
-
-# diamond
-jinja -d sketches/diamond/template.json ../kylepollina.github.io/templates/sketch.html > sketches/diamond/diamond.html
-
-# corners
-jinja -d sketches/corners/template.json ../kylepollina.github.io/templates/sketch.html > sketches/corners/corners.html
-
-# holohex
-jinja -d sketches/holohex/template.json ../kylepollina.github.io/templates/sketch.html > sketches/holohex/holohex.html
-
-# gogh
-jinja -d sketches/gogh/template.json ../kylepollina.github.io/templates/sketch.html > sketches/gogh/gogh.html
-
-# starry
-jinja -d sketches/starry/template.json ../kylepollina.github.io/templates/sketch.html > sketches/starry/starry.html
-
-# towers
-jinja -d sketches/towers/template.json ../kylepollina.github.io/templates/sketch.html > sketches/towers/towers.html
-
-# spiro
-jinja -d sketches/spiro/template.json ../kylepollina.github.io/templates/sketch.html > sketches/spiro/spiro.html
-
-# triangles
-jinja -d sketches/triangles/template.json ../kylepollina.github.io/templates/sketch.html > sketches/triangles/triangles.html
-
-# squares
-jinja -d sketches/squares/template.json ../kylepollina.github.io/templates/sketch.html > sketches/squares/squares.html
-
-# hypnotize
-jinja -d sketches/hypnotize/template.json ../kylepollina.github.io/templates/sketch.html > sketches/hypnotize/hypnotize.html
-
-# smile
-jinja -d sketches/smile/template.json ../kylepollina.github.io/templates/sketch.html > sketches/smile/smile.html
-
-# fences
-jinja -d sketches/fences/template.json ../kylepollina.github.io/templates/sketch.html > sketches/fences/fences.html
-
-# brush
-jinja -d sketches/brush/template.json ../kylepollina.github.io/templates/sketch.html > sketches/brush/brush.html
-
-# faces
-jinja -d sketches/faces/template.json ../kylepollina.github.io/templates/sketch.html > sketches/faces/faces.html
-
-# gosper
-jinja -d sketches/gosper/template.json ../kylepollina.github.io/templates/sketch.html > sketches/gosper/gosper.html
-
-# hallway
-jinja -d sketches/hallway/template.json ../kylepollina.github.io/templates/sketch.html > sketches/hallway/hallway.html
-
-# lotus
-jinja -d sketches/lotus/template.json ../kylepollina.github.io/templates/sketch.html > sketches/lotus/lotus.html
-
-# patterns
-jinja -d sketches/patterns/template.json ../kylepollina.github.io/templates/sketch.html > sketches/patterns/patterns.html
-
-# perlin
-jinja -d sketches/perlin/template.json ../kylepollina.github.io/templates/sketch.html > sketches/perlin/perlin.html
-
-# planes
-jinja -d sketches/planes/template.json ../kylepollina.github.io/templates/sketch.html > sketches/planes/planes.html
-
-# prisma
-jinja -d sketches/prisma/template.json ../kylepollina.github.io/templates/sketch.html > sketches/prisma/prisma.html
-
-# shapes
-jinja -d sketches/shapes/template.json ../kylepollina.github.io/templates/sketch.html > sketches/shapes/shapes.html
-
-# slices
-jinja -d sketches/slices/template.json ../kylepollina.github.io/templates/sketch.html > sketches/slices/slices.html
-
-# stripes
-jinja -d sketches/stripes/template.json ../kylepollina.github.io/templates/sketch.html > sketches/stripes/stripes.html
+      jinja -d sketches/$sketch/template.json ../kylepollina.github.io/templates/sketch.html > sketches/$sketch/tmp.html
+      jinja -d sketches/$sketch/template.json sketches/$sketch/tmp.html > sketches/$sketch/$sketch.html
+    fi
+  done
+elif [ $# -eq 1 ]; then
+  echo "Building $1..."
+  jinja -d sketches/$1/template.json ../kylepollina.github.io/templates/sketch.html > sketches/$1/tmp.html
+  jinja -d sketches/$1/template.json sketches/$1/tmp.html > sketches/$1/$1.html
+fi

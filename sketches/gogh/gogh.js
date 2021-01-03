@@ -31,7 +31,7 @@ function setup() {
     phyllotaxis.setMouseControls();
     phyllotaxis.constant = 14;
     phyllotaxis.ymin = 50;
-    
+
     noLoop();
 }
 
@@ -67,7 +67,7 @@ function draw() {
         beginShape();
         for(let i = 0; i < polygon.length; i++) {
             /* add vertex to shape */
-            vertex(polygon[i][0],polygon[i][1]); 
+            vertex(polygon[i][0],polygon[i][1]);
         }
         endShape();
     }

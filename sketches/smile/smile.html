@@ -13,6 +13,10 @@
   <script src="smile.js"></script>
   <script src="../../scripts/p5-utilities/turtle.js"></script>
   
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   
 </head>
 
@@ -46,6 +50,58 @@
   <div id="smile-holder">
   </div>
 </div>
+
+<br>
+
+<details>
+  <summary>Source code</summary>
+
+  <pre><code class="javascript">/* smile.js */
+
+var t;
+var n;
+var floor;
+
+function setup() {
+    var canvas = createCanvas(640, 640);
+    canvas.parent('smile-holder');
+
+    t = new Turtle();
+    // t.setStroke(color(0, 255, 255));
+    t.penDown();
+    
+    n = 0;
+
+    floor = height * 3/4;
+}
+
+function draw() {
+    background(0);    
+
+    let offset = -1 * sin(n / 200) * 350;
+    let roof = floor + offset;
+
+    stroke(0, 255, 255);
+    noFill();
+
+    let l = width * 3/8;
+    let r = width * 5/8;
+
+    if(roof < floor) {
+        triangle(l, floor, r, floor, width / 2, roof);
+    }
+
+    n++;
+}
+</code></pre>
+
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/turtle.js">p5-utilities/turtle.js</a>
+    </ul>
+  
+
+</details>
 
 
       </div>
