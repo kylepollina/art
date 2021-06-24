@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source env/bin/activate
+
 if [ $# -eq 0 ]; then
   echo 'Building all sketches'
   echo '---------------------'
